@@ -5,10 +5,12 @@
 
 (defcomponent Player [^float fireRate 
                       ^float fireFrame
-                      ^Bullet bullet]
+                      ^Bullet bullet
+                      ^Vector3 bulletOffset]
   (Awake [this] 
     (do 
-      (set! fireFrame 0.)))
+      (set! fireFrame 0.)
+      (set! bullet (.. this (GetComponent "BulletHolder") bullet))))
   (Update [this] 
     (let [fire-frame (if (= fireFrame 0.)
                          0.
@@ -24,5 +26,6 @@
          (set! fireFrame fire-frame)
          (if fire-bullet
              (do 
-               (instantiate bullet bullet-location)
+               (instantiate bullet (Vector3/op_Addition bullet-location
+                                                        bulletOffset))
                (set! fireFrame fireRate)))))))

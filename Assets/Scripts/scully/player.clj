@@ -11,7 +11,7 @@
     (do 
       (set! fireFrame 0.)
       (set! bullet (.. this (GetComponent "BulletHolder") bullet))))
-  (Update [this] 
+  (FixedUpdate [this] 
     (let [fire-frame (if (= fireFrame 0.)
                          0.
                          (- fireFrame 1.))

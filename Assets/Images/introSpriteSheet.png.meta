@@ -1,7 +1,9 @@
 fileFormatVersion: 2
-guid: 3b25c5b6c168c42258f06819bd9f100a
+guid: f473220e31025409ba735f4b9dbfd36a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: introSpriteSheet_0
+    21300002: introSpriteSheet_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -21,17 +23,17 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +44,26 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: introSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 968
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: introSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 968
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

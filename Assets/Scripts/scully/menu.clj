@@ -38,16 +38,16 @@
         (do
           (GameObject/Destroy (.gameObject (get-cursor this)))
           (.. this (GetComponent "Animator") 
-                    (SetBool "isMenu" false)))
+                   (SetBool "isMenu" false)))
         (Application/Quit))
   (Application/LoadLevel "Level")))
 
 (defn change-cursor! [^Menu this]
-  (let [cursor-transform (get-cursor this)
-        y-val (if (.top this) menu-bottom menu-top)
-        pos (.position cursor-transform)]
-    (if (.top this)
-        (do
-          (set! (.top this) (not (.top this)))
-          (set! (.. cursor-transform position) (Vector3. (.x pos) y-val 1))))))
+  (if (.. this (GetComponent "Animator") (GetBool "isMenu"))
+    (let [cursor-transform (get-cursor this)
+          y-val (if (.top this) menu-bottom menu-top)
+          pos (.position cursor-transform)]
+      (do
+        (set! (.top this) (not (.top this)))
+        (set! (.. cursor-transform position) (Vector3. (.x pos) y-val 1))))))
 

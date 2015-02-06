@@ -8,7 +8,8 @@
          awake)
 
 (defcomponent Player [^float fireRate ^float fireFrame
-                      ^Bullet bullet ^Vector3 bulletOffset]
+                      ^Bullet bullet ^Vector3 bulletOffset
+                      ^int lives]
   (Awake [this] (awake this))
   (FixedUpdate [this] (fixed-update this)))
 

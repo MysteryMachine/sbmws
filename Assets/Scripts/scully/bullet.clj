@@ -5,10 +5,11 @@
 (defcomponent Bullet [^float lifetime
                       ^float timeElapsed
                       ^Vector3 speed
-                      ^float follow] 
+                      ^float follow
+                      ^int damage] 
   (Awake [this] 
     (add-component (.gameObject this) scully.collidable.Collidable)
-    (set! (.. this (GetComponent "Collidable") type) :bullet))
+    (set! (.. this (GetComponent "Collidable") type) :player-bullet))
   (Update [this] 
     (let [dead (> timeElapsed lifetime)
           new-time (+ 1 timeElapsed)]

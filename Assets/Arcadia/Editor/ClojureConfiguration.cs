@@ -1,18 +1,26 @@
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
+using clojure.lang;
 
-public class ClojureConfiguration : EditorWindow {
-  [SerializeField]
-  public static bool AutoCompile = true;
-
+[CustomEditor(typeof(ClojureConfigurationObject))]
+public class ClojureConfiguration : Editor {
+  public static string configFilePath = "Assets/Arcadia/configure.edn";  
+  static ClojureConfigurationObject _clojureConfigurationObject;
+    
   [MenuItem ("Arcadia/Configuration...")]
-  static void Init () {
-    ClojureConfiguration window = (ClojureConfiguration)EditorWindow.GetWindow (typeof (ClojureConfiguration));
+  public static void Init () {
+    if(_clojureConfigurationObject == null)
+      _clojureConfigurationObject = new ClojureConfigurationObject();
+      
+    RT.var("arcadia.config", "update!").invoke();
+    Selection.activeObject = _clojureConfigurationObject;
   }
 
-  void OnGUI () {
-    EditorGUILayout.LabelField("This is a temporary hack.");
-    EditorGUILayout.LabelField("A beautiful EDN configuration system will take its place.");
-    ClojureConfiguration.AutoCompile = EditorGUILayout.Toggle("Auto Compile Clojure Code", ClojureConfiguration.AutoCompile);
-  }
+  public override void OnInspectorGUI () {
+    configFilePath = EditorGUILayout.TextField("Config File Path", configFilePath);
+    RT.var("arcadia.config", "render-gui").invoke();
+  } 
 }
+
+public class ClojureConfigurationObject : ScriptableObject {}

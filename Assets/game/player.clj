@@ -20,7 +20,6 @@
 (defn- c-awake [this]
   (do 
     (set! (.fireFrame this) (int 0))
-    ;;(set! (.bullet this) (.. this (GetComponent "BulletHolder") bullet))
     (add-component (.gameObject this) game.collidable.Collidable)
     (set! (.. this (GetComponent "Collidable") type) :player)))
 

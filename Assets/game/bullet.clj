@@ -1,15 +1,17 @@
 (ns game.bullet
-  (:use arcadia.core)
+  (:use arcadia.core
+        game.collidable)
   (:import [UnityEngine]))
 
-(defcomponent Bullet [^float lifetime
-                      ^float timeElapsed
-                      ^Vector3 speed
-                      ^float follow
-                      ^int damage] 
-  (Awake [this] 
-    (add-component (.gameObject this) game.collidable.Collidable)
-    (set! (.. this (GetComponent "Collidable") type) :player-bullet))
+(defcomponent Bullet 
+  [^int damage
+   ^int lifetime
+   ^int timeElapsed
+   ^float follow
+   ^Vector3 speed]
+   
+  (Awake [this] (add-collider! this))
+  
   (Update [this] 
     (let [dead (> timeElapsed lifetime)
           new-time (+ 1 timeElapsed)]
@@ -19,5 +21,5 @@
                 pos (.position transform)
                 new-pos (Vector3/op_Addition pos (.speed this))]
             (do 
-              (set! timeElapsed new-time)
+              (set! (.timeElapsed this) (int new-time))
               (set! (.position transform) new-pos)))))))

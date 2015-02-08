@@ -4,15 +4,17 @@
         game.collidable)
   (:import [UnityEngine Debug Transform GameObject Vector3]))
 
-(declare c-update
-         c-awake)
+(declare c-update c-awake)
 
-(defcomponent Enemy [^Vector3 speed]
+(defcomponent Enemy 
+  [^Vector3 speed]
+  
   (Awake [this] (c-awake this)) 
   (Update [this] (c-update this)))
 
 (defn- c-awake [this] 
-  (doseq [transform (rest (.GetComponentsInChildren (.gameObject this) Transform))]
+  (doseq 
+    [transform (rest (.GetComponentsInChildren (.gameObject this) Transform))]
   	(add-component (.gameObject transform) game.collidable.Collidable)
   	(set! (.. (.gameObject transform) (GetComponent "Collidable") type) :enemy)))
 

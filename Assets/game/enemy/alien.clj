@@ -32,4 +32,4 @@
       (set! (local-position this) v)
       (set! (.t this) (int tf)))))
 
-(defn- c-collide [this collider] (enemy-take-damage this collider))
+(defn- c-collide [this collider] (enemy-collide this collider))

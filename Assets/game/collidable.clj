@@ -5,16 +5,14 @@
 
 (defcomponent Collidable [^Keyword type])
 
-(defn add-collider! [this type]
-  (add-component (.gameObject this) game.collidable.Collidable)
-  (set! (.. this (GetComponent "Collidable") type) type)
-  
-  ;(component-init this game.collidable.Collidable
-                  ;:type type)
-)
-
 (defn collider-type [obj] 
   (if-component "Collidable" obj .type))
 
 (defn has-collider-type [collider type]
   (= type (collider-type (.gameObject collider))))
+
+(defn make-collidable [obj col-type]
+  (do
+    (add-component (.gameObject obj) game.collidable.Collidable)
+    (set! (.. obj (GetComponent "Collidable") type) col-type)
+    obj))

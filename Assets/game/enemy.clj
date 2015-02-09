@@ -25,13 +25,18 @@
       (set! (.position transform) new-vec)
       (GameObject/Destroy (.gameObject this)))))
 
-(defn enemy-take-damage [this collider]
-  (if (has-collider-type collider :player-bullet)
+(defn- dmg-or-death [this new-health]  
+  (GameObject/Destroy (.gameObject this))
+  (set! (.health this) (int new-health)))
+  
+(defn- enemy-take-damage [this collider]
+  (let [bullet (.. collider gameObject (GetComponent "Bullet"))
+        dmg (.damage bullet)  
+        new-health (- (.health this) dmg)]
     (do
-      (let [bullet (.. collider gameObject (GetComponent "Bullet"))
-            dmg (.damage bullet)  
-            new-health (- (.health this) dmg)]
-        (if (<= new-health 0)
-            (GameObject/Destroy (.gameObject this))
-            (set! (.health this) new-health)))
-      (GameObject/Destroy (.gameObject collider)))))
+      (if (<= new-health 0) (dmg-or-death this new-health)))
+      (GameObject/Destroy (.gameObject collider))))
+
+(defn enemy-collide [this collider]
+  (if (has-collider-type collider :player-bullet)
+      (enemy-take-damage this collider)))

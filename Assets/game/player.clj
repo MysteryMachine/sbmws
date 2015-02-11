@@ -1,8 +1,9 @@
 (ns game.player
   (:use arcadia.core
         game.core
+        hard.core
         game.collidable)
-  (:import [UnityEngine GameObject Debug])) 
+  (:import [UnityEngine GameObject Debug Input])) 
 
 (declare c-fixed-update
          c-awake
@@ -14,6 +15,7 @@
    ^int lives 
    ^int invulnTime
    ^int invulnTimeLeft
+   ^float speed
    ^Bullet bullet 
    ^Vector3 bulletOffset]
   
@@ -23,10 +25,24 @@
   (OnTriggerStay2D [this collider] (c-collide this collider)))
 
 (defn- fire-bullet [this]
-  (let [start-pos (Vector3/op_Addition (.. this transform position) (.bulletOffset this))]
+  (let [start-pos (v3+ (position this) (.bulletOffset this))]
     (do 
       (make-collidable (instantiate (.bullet this) start-pos) :player-bullet)
       (set! (.fireFrame this) (.fireRate this)))))
+
+(defn- handle-controls [this]
+  (let [mvspd (if (and (or (Input/GetKeyDown "right") (Input/GetKeyDown "left")) 
+                       (or (Input/GetKeyDown "down") (Input/GetKeyDown "up")))
+                  (Math/Sqrt (.speed this))
+                  (.speed this))
+        dx (cond (Input/GetKeyDown "right") mvspd
+                 (Input/GetKeyDown "left") (- mvspd)
+                 :else 0)
+        dy (cond (Input/GetKeyDown "up") mvspd
+                 (Input/GetKeyDown "down") (- mvspd)
+                 :else 0)
+        new-vec (v3+ (position this) (vector3 dx dy 0))]
+      (set! (position this) new-vec)))
 
 (defn- c-awake [this]
   (do 
@@ -37,8 +53,8 @@
   (let [fire-frame (if (> (.fireFrame this) 0)
                        (- (.fireFrame this) 1)
                        (.fireFrame this))
-        new-pos (.. (object-named "Main Camera") camera (ScreenToWorldPoint Input/mousePosition))
-        new-vec (Vector3. (.x new-pos) (.y new-pos) 0)
+        new-vec (handle-controls this)
+        ;new-pos (.. (object-named "Main Camera") camera (ScreenToWorldPoint Input/mousePosition))
         clicked (Input/GetMouseButton 0)
         fire-bullet? (and clicked (= 0 fire-frame))
         cur-invuln-time-left (.invulnTimeLeft this)

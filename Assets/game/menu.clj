@@ -25,12 +25,12 @@
       (.. this (GetComponent "Animator") (SetBool "isMenu" false)))
     (Application/Quit)))
 
-(defn- handle-enter! [^Menu this] 
+(defn- handle-other-key! [^Menu this] 
   (if (.. this (GetComponent "Animator") (GetBool "isMenu"))
       (menu-action this)
       (Application/LoadLevel "Level")))
 
-(defn- handle-keys! [^Menu this]
+(defn- handle-arrow-keys! [^Menu this]
   (if (.. this (GetComponent "Animator") (GetBool "isMenu"))
     (let [cursor-transform (get-cursor this)
           y-val (if (.top this) menu-bottom menu-top)
@@ -43,9 +43,8 @@
   (set! (.top this) true))
 
 (defn- c-update [^Menu this]
-  (let [keys?  (or (Input/GetKeyDown "up")
-                   (Input/GetKeyDown "down"))
-        enter? (or (Input/GetKeyDown "return")
-                   (Input/GetKeyDown "enter"))]
-    (cond keys?  (handle-keys! this)
-          enter? (handle-enter! this))))
+  (let [arrow-keys?  (or (Input/GetKeyDown "up")
+                         (Input/GetKeyDown "down"))
+        other-key?   (Input/anyKey)]
+    (cond arrow-keys?  (handle-arrow-keys! this)
+          other-key? (handle-other-key! this))))

@@ -3,17 +3,17 @@
         hard.core)
   (:import [UnityEngine Debug]))
 
-(defn sin [t] (Math/Sin t))
-(defn cos [t] (Math/Cos t))
+(defmacro sin [t] `(Math/Sin ~t))
+(defmacro cos [t] `(Math/Cos ~t))
 
-(defn vector3 
-  ([x y z] (Vector3. x y z))
-  ([v changeset] 
-  	(let [{ x :x y :y z :z } changeset
-            dx (or x (.x v))
-            dy (or y (.y v))
-            dz (or z (.z v))]
-       (vector3 dx dy dz))))
+(defmacro vector3  [x y z] `(Vector3. ~x ~y ~z))
+(defmacro v3update [v & changeset] 
+  `(let [v# ~v
+         { x# :x y# :y z# :z } ~(apply hash-map changeset)
+          dx# (or x# (.x v#) 0)
+          dy# (or y# (.y v#) 0)
+          dz# (or z# (.z v#) 0)]
+     (Vector3. dx# dy# dz#)))
 
 (defn v3+ [& more]
   (reduce #(Vector3/op_Addition %1 %2) more))

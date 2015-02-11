@@ -30,19 +30,26 @@
       (make-collidable (instantiate (.bullet this) start-pos) :player-bullet)
       (set! (.fireFrame this) (.fireRate this)))))
 
-(defn- handle-controls [this]
-  (let [mvspd (if (and (or (Input/GetKeyDown "right") (Input/GetKeyDown "left")) 
-                       (or (Input/GetKeyDown "down") (Input/GetKeyDown "up")))
-                  (Math/Sqrt (.speed this))
+(defn- handle-controls [this fire-frame]
+  (let [shoot? (and (= 0 fire-frame)
+                (or (Input/GetKey "enter")
+                    (Input/GetKey "return")
+                    (Input/GetKey "space")
+                    (Input/GetKey "z")))
+        mvspd (if (and (or (Input/GetKey "right") (Input/GetKey "left")) 
+                       (or (Input/GetKey "down") (Input/GetKey "up")))
+                  (/ (.speed this) (Math/Sqrt 2))
                   (.speed this))
-        dx (cond (Input/GetKeyDown "right") mvspd
-                 (Input/GetKeyDown "left") (- mvspd)
+        dx (cond (Input/GetKey "right") mvspd
+                 (Input/GetKey "left") (- mvspd)
                  :else 0)
-        dy (cond (Input/GetKeyDown "up") mvspd
-                 (Input/GetKeyDown "down") (- mvspd)
+        dy (cond (Input/GetKey "up") mvspd
+                 (Input/GetKey "down") (- mvspd)
                  :else 0)
         new-vec (v3+ (position this) (vector3 dx dy 0))]
-      (set! (position this) new-vec)))
+      (do
+        (if shoot? (fire-bullet this))
+        (set! (position this) new-vec))))
 
 (defn- c-awake [this]
   (do 
@@ -53,19 +60,17 @@
   (let [fire-frame (if (> (.fireFrame this) 0)
                        (- (.fireFrame this) 1)
                        (.fireFrame this))
-        new-vec (handle-controls this)
         ;new-pos (.. (object-named "Main Camera") camera (ScreenToWorldPoint Input/mousePosition))
         clicked (Input/GetMouseButton 0)
-        fire-bullet? (and clicked (= 0 fire-frame))
+        
         cur-invuln-time-left (.invulnTimeLeft this)
         new-invuln-time-left (if (> cur-invuln-time-left 0)
                                  (- cur-invuln-time-left 1)
                                  0)]
      (do 
        (set! (.invulnTimeLeft this) (int new-invuln-time-left))
-       (set! (.. this transform position) new-vec)
        (set! (.fireFrame this) (int fire-frame))
-       (if fire-bullet? (fire-bullet this)))))
+       (handle-controls this fire-frame))))
 
 (defn- c-collide [this collider]
   (let [collider-type (collider-type (.gameObject collider))

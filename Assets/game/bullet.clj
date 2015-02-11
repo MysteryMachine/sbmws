@@ -1,5 +1,6 @@
 (ns game.bullet
   (:use arcadia.core
+        game.core
         game.collidable)
   (:import [UnityEngine]))
 
@@ -17,7 +18,7 @@
 (defn- move [this]
   (let [transform (.GetComponent this "Transform")
         new-time (+ 1 (.timeElapsed this))
-        new-pos (Vector3/op_Addition (.position transform) (.speed this))]
+        new-pos (v3+ (.position transform) (.speed this))]
     (do 
       (set! (.timeElapsed this) (int new-time))
       (set! (.position transform) new-pos))))

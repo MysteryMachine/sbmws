@@ -24,9 +24,9 @@
 
 (defn- c-awake [this] this)
 (defn- c-update [this loopSize loops t dt]
-  (let [v (vector3 (local-position this) 
-                   { :x (fx t loopSize)
-                     :y (fy t loops)})
+  (let [v (v3update (local-position this) 
+                    :x (fx t loopSize)
+                    :y (fy t loops))
         tf (if (> t max-t) 0 (+ dt t))]
     (do
       (set! (.. this transform localPosition) v)

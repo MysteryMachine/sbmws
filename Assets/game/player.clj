@@ -17,6 +17,7 @@
    ^int invulnTimeLeft
    ^float speed
    ^Bullet bullet 
+   ^Bullet secondaryBullet
    ^Vector3 bulletOffset]
   
   (Awake [this] (c-awake this))
@@ -62,13 +63,13 @@
                        (.fireFrame this))
         ;new-pos (.. (object-named "Main Camera") camera (ScreenToWorldPoint Input/mousePosition))
         clicked (Input/GetMouseButton 0)
-        
         cur-invuln-time-left (.invulnTimeLeft this)
         new-invuln-time-left (if (> cur-invuln-time-left 0)
                                  (- cur-invuln-time-left 1)
-                                 0)]
+                                 cur-invuln-time-left)]
      (do 
        (set! (.invulnTimeLeft this) (int new-invuln-time-left))
+       (.. this (GetComponent "Animator") (SetInteger "invuln" (int new-invuln-time-left)))
        (set! (.fireFrame this) (int fire-frame))
        (handle-controls this fire-frame))))
 
@@ -76,9 +77,10 @@
   (let [collider-type (collider-type (.gameObject collider))
         take-damage (and (or (= collider-type :enemy-bullet) 
                              (= collider-type :enemy)) 
-                         (< (.invulnTimeLeft this) 0))]
+                         (= (.invulnTimeLeft this) 0))]
     (if take-damage
-        (do
-          (set! (.invulnTimeLeft this) (.invulnTime this))
-          (set! (.lives this) (- (.lives this) (int 0)))))))
+        (let [lives-left (int (- (.lives this) 1))]
+          (do
+            (set! (.invulnTimeLeft this) (.invulnTime this))
+            (set! (.lives this) lives-left))))))
 

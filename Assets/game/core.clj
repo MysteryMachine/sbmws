@@ -18,6 +18,9 @@
 (defn v3+ [& more]
   (reduce #(Vector3/op_Addition %1 %2) more))
 
+(defn v3- [& more]
+  (reduce #(Vector3/op_Subtraction %1 %2) more))
+
 (defmacro position [obj]
   `(.position (.transform ~obj)))
 

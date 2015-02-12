@@ -1,6 +1,21 @@
 fileFormatVersion: 2
 guid: e397336f1a37140be9bf8a0fc7e3c0e3
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: jetpackFlashSpriteSheet_0
+    21300002: jetpackFlashSpriteSheet_1
+    21300004: jetpackFlashSpriteSheet_2
+    21300006: jetpackFlashSpriteSheet_3
+    21300008: jetpackFlashSpriteSheet_4
+    21300010: jetpackFlashSpriteSheet_5
+    21300012: jetpackFlashSpriteSheet_6
+    21300014: jetpackFlashSpriteSheet_7
+    21300016: jetpackFlashSpriteSheet_8
+    21300018: jetpackFlashSpriteSheet_9
+    21300020: jetpackFlashSpriteSheet_10
+    21300022: jetpackFlashSpriteSheet_11
+    21300024: jetpackFlashSpriteSheet_12
+    21300026: jetpackFlashSpriteSheet_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -20,21 +35,22 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -44,6 +60,146 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: jetpackFlashSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1623
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1623
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1623
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1623
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1198
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 1198
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 1198
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1198
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 773
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 773
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 773
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 773
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 348
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackFlashSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 348
+        width: 450
+        height: 425
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

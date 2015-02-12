@@ -1,7 +1,23 @@
 fileFormatVersion: 2
 guid: 2c26da37c06d5435a90e5f1b9452552a
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: jetpackProjectileImpactSpriteSheet200x60_0
+    21300002: jetpackProjectileImpactSpriteSheet200x60_1
+    21300004: jetpackProjectileImpactSpriteSheet200x60_2
+    21300006: jetpackProjectileImpactSpriteSheet200x60_3
+    21300008: jetpackProjectileImpactSpriteSheet200x60_4
+    21300010: jetpackProjectileImpactSpriteSheet200x60_5
+    21300012: jetpackProjectileImpactSpriteSheet200x60_6
+    21300014: jetpackProjectileImpactSpriteSheet200x60_7
+    21300016: jetpackProjectileImpactSpriteSheet200x60_8
+    21300018: jetpackProjectileImpactSpriteSheet200x60_9
+    21300020: jetpackProjectileImpactSpriteSheet200x60_10
+    21300022: jetpackProjectileImpactSpriteSheet200x60_11
+    21300024: jetpackProjectileImpactSpriteSheet200x60_12
+    21300026: jetpackProjectileImpactSpriteSheet200x60_13
+    21300028: jetpackProjectileImpactSpriteSheet200x60_14
+    21300030: jetpackProjectileImpactSpriteSheet200x60_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -21,17 +37,17 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 1024
+  textureFormat: -3
+  maxTextureSize: 4096
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +58,166 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: jetpackProjectileImpactSpriteSheet200x60_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 452
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 452
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 392
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 332
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 332
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 272
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_7
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 272
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 212
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_9
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 212
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 152
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_11
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 152
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 92
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_13
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 92
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: jetpackProjectileImpactSpriteSheet200x60_15
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 32
+        width: 200
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

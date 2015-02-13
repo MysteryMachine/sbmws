@@ -13,6 +13,9 @@
   (Awake [this] (c-awake this)) 
   (Update [this] (c-update this)))
 
+(defn- level+ [] (let [g (.. (object-named "Enemy Generator") (GetComponent "EnemyGenerator"))]
+                  (set! (.level g) (int (+ 1 (.level g))))))
+
 (defn- c-awake [this] 
   (doseq [transform (rest (.GetComponentsInChildren (.gameObject this) Transform))]
   	(add-component (.gameObject transform) game.collidable.Collidable)
@@ -22,7 +25,7 @@
   (let [transform (.. this (GetComponent "Transform"))
         new-vec (v3+ (.position transform) (.speed this))]
     (if (.moveForward this)
-      (if (> (.x new-vec) -60)
+      (if (> (.x new-vec) -10)
         (set! (.position transform) new-vec)
         (GameObject/Destroy (.gameObject this)))
     (set! (.position transform) (v3- (.position transform)
@@ -34,14 +37,15 @@
         new-health (- (.health enemy-component) dmg)]
     (do
       (if (<= new-health 0) 
-        (GameObject/Destroy (.gameObject enemy-component))
+        (do
+          (GameObject/Destroy (.gameObject enemy-component))
+          (level+))
         (do
           (if (> (.recoveryTime enemy-component) 0)
             (do 
               (set! (.. enemy-component (GetComponentInParent Enemy) moveForward) false)
               (set! (.curRecTime enemy-component) (.recoveryTime enemy-component))))
-          (set! (.health enemy-component) (int new-health))))
-      (GameObject/Destroy (.gameObject collider)))))
+          (set! (.health enemy-component) (int new-health)))))))
 
 (defn should-recover [enemy-component]
   (> (.curRecTime enemy-component) 0))

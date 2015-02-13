@@ -31,3 +31,28 @@
   `(if-let [c# (.GetComponent ~obj ~comp-name)] (~fun c#)))
 
 
+; Yoink -> https://gist.github.com/nasser/de0ddaead927dfa5261b
+(defmacro chance [& body]
+  (let [r (gensym "chance")
+        pairs (sort-by first (partition 2 body))
+        odds (map first pairs)
+        exprs (map last pairs)
+        sum (apply + odds)
+        fracs (map #(float (/ % sum)) odds)
+        frac-pairs (partition 2 (interleave fracs exprs))]
+    `(let [~r (rand)]
+       (cond
+         ~@(apply concat
+                  (reduce
+                    (fn [acc [odds expr]]
+                      (let [odd-sum (if (seq acc)
+                                      (-> acc last first last)
+                                      0)]
+                        (conj acc [`(< ~r ~(+ odd-sum odds))
+                                   expr])))
+                    []
+                    (drop-last frac-pairs)))
+         :else
+         ~(-> frac-pairs last last)))))
+
+

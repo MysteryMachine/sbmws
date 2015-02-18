@@ -54,5 +54,3 @@
                     (drop-last frac-pairs)))
          :else
          ~(-> frac-pairs last last)))))
-
-

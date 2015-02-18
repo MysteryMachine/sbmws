@@ -45,6 +45,6 @@
 (defn- c-update [^Menu this]
   (let [arrow-keys?  (or (Input/GetKeyDown "up")
                          (Input/GetKeyDown "down"))
-        other-key?   (Input/anyKey)]
+        other-key?   (Input/anyKeyDown)]
     (cond arrow-keys?  (handle-arrow-keys! this)
           other-key? (handle-other-key! this))))

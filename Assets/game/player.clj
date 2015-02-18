@@ -3,7 +3,7 @@
         game.core
         hard.core
         game.collidable)
-  (:import [UnityEngine GameObject Debug Input])) 
+  (:import [UnityEngine GameObject Debug Input Application])) 
 
 (declare c-fixed-update
          c-awake
@@ -82,5 +82,6 @@
         (let [lives-left (int (- (.lives this) 1))]
           (do
             (set! (.invulnTimeLeft this) (.invulnTime this))
-            (set! (.lives this) lives-left))))))
+            (set! (.lives this) lives-left)
+            (if (= lives-left 0) (Application/LoadLevel "Game Over")))))))
 

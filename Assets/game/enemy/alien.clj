@@ -36,7 +36,7 @@
     (set! (.yLoops this) (float (+ -6 (* 3 (rand)))))
     (set! (.height this) (float (+ -2 (* 4 (rand)))))
     (set! (.width this) (float (+ -2 (* 4 (rand)))))
-    (set! (.dt this) (float (+ 0.005 (/ (rand) 20))))))
+    (set! (.dt this) (float (+ 0.01 (* (rand) 0.01))))))
 
 (defn- c-update [this xLoops yLoops height width t dt curRecTime]
   (let [should-rec (should-recover this)

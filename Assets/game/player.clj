@@ -12,13 +12,17 @@
 (defcomponent Player 
   [^int fireRate 
    ^int fireFrame
+   ^int catFireRate
+   ^int catFireFrame
    ^int lives 
    ^int invulnTime
    ^int invulnTimeLeft
    ^float speed
    ^Bullet bullet 
-   ^Bullet secondaryBullet
-   ^Vector3 bulletOffset]
+   ^Bullet cat
+   ^Vector3 bulletOffset
+   ^Vector3 catOffset
+   ^Quaternion catRotation]
   
   (Awake [this] (c-awake this))
   (FixedUpdate [this] (c-fixed-update this))
@@ -31,12 +35,19 @@
       (make-collidable (instantiate (.bullet this) start-pos) :player-bullet)
       (set! (.fireFrame this) (.fireRate this)))))
 
-(defn- handle-controls [this fire-frame]
-  (let [shoot? (and (= 0 fire-frame)
-                (or (Input/GetKey "enter")
+(defn- fire-cat [this]
+  (let [start-pos (v3+ (position this) (.catOffset this))]
+    (do 
+      (make-collidable (instantiate (.cat this) start-pos (.catRotation this)) :player-bullet)
+      (set! (.catFireFrame this) (.catFireRate this)))))
+
+(defn- handle-controls [this fire-frame cat-frame]
+  (let [fire-key? (or (Input/GetKey "enter")
                     (Input/GetKey "return")
                     (Input/GetKey "space")
-                    (Input/GetKey "z")))
+                    (Input/GetKey "z"))
+        shoot? (and (= 0 fire-frame) fire-key?)
+        shoot-cat? (and (= 0 cat-frame) fire-key?)
         mvspd (if (and (or (Input/GetKey "right") (Input/GetKey "left")) 
                        (or (Input/GetKey "down") (Input/GetKey "up")))
                   (/ (.speed this) (Math/Sqrt 2))
@@ -49,7 +60,8 @@
                  :else 0)
         new-vec (v3+ (position this) (vector3 dx dy 0))]
       (do
-        (if shoot? (fire-bullet this))
+        (if (and (not shoot-cat?) shoot?) (fire-bullet this))
+        (if shoot-cat? (fire-cat this))
         (set! (position this) new-vec))))
 
 (defn- c-awake [this]
@@ -61,6 +73,9 @@
   (let [fire-frame (if (> (.fireFrame this) 0)
                        (- (.fireFrame this) 1)
                        (.fireFrame this))
+        cat-frame (if (> (.catFireFrame this) 0)
+                       (- (.catFireFrame this) 1)
+                       (.catFireFrame this))
         ;new-pos (.. (object-named "Main Camera") camera (ScreenToWorldPoint Input/mousePosition))
         clicked (Input/GetMouseButton 0)
         cur-invuln-time-left (.invulnTimeLeft this)
@@ -71,7 +86,8 @@
        (set! (.invulnTimeLeft this) (int new-invuln-time-left))
        (.. this (GetComponent "Animator") (SetInteger "invuln" (int new-invuln-time-left)))
        (set! (.fireFrame this) (int fire-frame))
-       (handle-controls this fire-frame))))
+       (set! (.catFireFrame this) (int cat-frame))
+       (handle-controls this fire-frame cat-frame))))
 
 (defn- c-collide [this collider]
   (let [collider-type (collider-type (.gameObject collider))

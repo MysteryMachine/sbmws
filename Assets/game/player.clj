@@ -98,6 +98,7 @@
         (let [lives-left (int (- (.lives this) 1))]
           (do
             (set! (.invulnTimeLeft this) (.invulnTime this))
+            (set! (.. (object-named "Lives") (GetComponent "Text") text) (str "x " lives-left))
             (set! (.lives this) lives-left)
             (if (= lives-left 0) (Application/LoadLevel "Game Over")))))))
 
